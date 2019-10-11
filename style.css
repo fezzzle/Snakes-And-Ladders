@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+* {
+  box-sizing: border-box; 
+  font-family: 'Open Sans', sans-serif;
+}
+body {
+  overflow: inherit;
+  margin: 0 auto;
+  max-height: 100%;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  color: white;
+}
+
+.content-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.content-body .content {
+  flex: 1 1 auto;
+  overflow: auto;
+}
+
+.row {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-height: 9vh;
+  width: 100%;
+  /* Styling border as a parent */
+  border-width: 0.5px 0 0 0.5px;
+  border-style: solid;
+}
+
+.tile {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  flex-basis: 100%;
+  flex: 1;
+  background-color: #FFC030;
+
+
+  /* Styling border as a child */
+  border-style: solid;
+  border-width:  0  0.5px 0.5px  0;
+  /* Styling text inside tile */
+  line-height: 2em;
+  color: white;
+  font-size: 1,5em;
+  text-align: left;
+  /* padding-left: 5px; */
+}
+
+.aside {
+  min-height: 80vh;
+  flex: 0 0 200px;
+  overflow: auto;
+  background: #C70039;
+  border-width: 0.5px 0 0.5px 0;
+  border-style: solid;
+}
+
+.header, .footer, .aside {
+  padding: 1em;
+}
+.header, .footer {
+  height: 10vh;
+  background-color: #581845;
+}
+
+.text {
+  display: flex;
+  position: absolute;
+  font-size: 5em;
+  color: white;
+  z-index: 1;
+}
+
+.player0 {
+  flex: 0 0 50%;
+  align-self: center;
+  margin: 0 0 0 0;
+  height: 70px;
+  border-width:  1px  0.5px 0.5px  1px;
+  border-style: solid;
+  background-color: purple;
+  z-index: 0;
+}
+.player1 {
+  flex: 0 0 50%;
+  align-self: flex-end;
+  margin: 0 0 0 0;
+  height: 70px;
+  border-width:  1px  0.5px 0.5px  1px;
+  border-style: solid;
+  background-color: blue;
+  z-index: 0;
+}
