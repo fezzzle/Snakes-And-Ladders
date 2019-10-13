@@ -7,6 +7,19 @@ class UI {
     this.counter = 101;
     this.gameTable = document.getElementById("gameTable");
   }
+
+  addRollDiceButton() {
+    const selectParent = document.querySelector(".aside");
+    const button = document.createElement("button");
+    button.setAttribute("id", "diceBtn");
+    button.textContent = "Roll Dice"
+    selectParent.append(button);
+  }
+  displayDiceResult(dieResult) {
+    const result = document.getElementById("diceResult");
+    result.textContent = dieResult;
+  }
+
   setTiles() {
     
     let makeRowDiv;
@@ -46,10 +59,8 @@ class UI {
   initBoard() {
     // Call setTiles to paint gameboard and be able to select elements on it
     this.setTiles();
-
-    const startPosition = document.querySelector(".tile1");
-
-    // Get array from NodeList and reverse it, index 0 = 1 position tile on screen
+    this.addRollDiceButton();
+    this.displayDiceResult("Start");
   }
 }
 

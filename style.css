@@ -76,6 +76,16 @@ body {
   border-style: solid;
 }
 
+#diceBtn {
+  width: 100px;
+  margin-left: 20px;
+}
+
+#diceResult {
+  padding-left: 30px;
+  font-size: 2em;
+}
+
 .header, .footer, .aside {
   padding: 1em;
 }
@@ -88,7 +98,7 @@ body {
   display: flex;
   position: absolute;
   font-size: 5em;
-  color: white;
+  color: rgba(255,255,255,0.25);
   z-index: 1;
 }
 

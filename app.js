@@ -1,9 +1,12 @@
 const display = new UI();
-const game = new Game("john", 2);
+const game = new Game("Martin", "Dinnu", 2);
 
 display.initBoard();
+game.addPlayerNames();
 game.addPlayers();
-game.movePlayer(game.getRandomNumber());
-// console.log(randomNumber);
 
 
+document.getElementById("diceBtn").addEventListener("mouseup", rollDice);
+function rollDice() {
+  game.movePlayer(game.getRandomNumber());
+};
