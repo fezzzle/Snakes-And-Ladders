@@ -4,89 +4,37 @@ class Game {
     this.player1 = player1;
     this.playerCount = playerCount;
   }
+
+
   addPlayerNames() {
     let names = [this.player0, this.player1];
-    console.log("TCL: Game -> addPlayerNames -> names", names)
     const name = document.getElementById("name");
     for (let i = 0; i < names.length; i++) {
       const p = document.createElement("p");
       p.textContent = `Player${i + 1}: ${names[i]}`;
       name.append(p);
     }
-  }
-  nextPlayerMove() {
-    this.count = this.getPlayerTurn() + 1;
-    if (this.count === this.playerCount) this.count = 0;
-    return this.count;
-  }
-
-  getPlayerTurn() {
-    return this.count || 0;
-  }
-
-  savePlayer0Position(pos) {
-    this.playerPosition0 = this.getPlayer0Position() + pos;
-    return this.playerPosition0;
-  }
-
-  getPlayer0Position() {
-    return this.playerPosition0 || 0;
-  }
+  }  
   
-  savePlayer1Position(pos) {
-    this.playerPosition1 = this.getPlayer1Position() + pos;
-    return this.playerPosition1;
-  }
-
-  getPlayer1Position() {
-    return this.playerPosition1 || 0;
-  }
-
-  getPlayer0TurnCounter(num) {
-    this.player0TurnCounter = this.savePlayer0TurnCounter() + 1
-    return this.player0TurnCounter;
-  }
-  
-  getPlayer1TurnCounter(num) {
-    this.player0TurnCounter = this.savePlayer0TurnCounter() + 1
-    return this.player0TurnCounter;
-  }
-
-  savePlayer0TurnCounter() {
-    return this.player0TurnCounter || 0;
-  }
-
-  savePlayer1TurnCounter() {
-    return this.player1TurnCounter || 0;
-  }
-  
-  getRandomNumber() {
-    return Math.floor(Math.random() * 6) + 1;
-  }
-
   paintPlayers(playerNum, position) {
     const getTiles = Array.from(document.querySelectorAll(".tile")).reverse();
     getTiles.unshift(null);
-    console.log(getTiles[1]);
-    let getPlayerClassToRemove = this.getPlayerCurrentPosition(playerNum);
+    let getPlayerClassToRemove = helpers.getPlayerCurrentPosition(playerNum);
+    console.log("TCL: Game -> paintPlayers -> getPlayerClassToRemove", getPlayerClassToRemove);
 
-    // This is problematic. It checks the first tile and then removes player tiles.
-    if (getTiles[1].hasChildNodes) {
-      getPlayerClassToRemove.remove();
-    }
+    getPlayerClassToRemove.remove();
 
     let div = document.createElement("div");
     div.classList.add("player" + playerNum);
-    if (position > 100) {
-      getPlayerClassToRemove.remove();
-      // this.determineGameEnd();
+    if (position === 100) {
+      getTiles[position].append(div);
+      this.determineGameEnd();
     } else if (position <= 99) {
       getTiles[position].append(div);
+    } else if (position > 100) {
+      getTiles[100].append(div);
+      this.determineGameEnd();
     }
-  }
-  
-  getPlayerCurrentPosition(playerNum) {
-    return document.querySelector(".player" + playerNum);
   }
 
   addPlayers() {
@@ -97,46 +45,59 @@ class Game {
       document.getElementById("1").append(div);
     }
   }
-
   
   movePlayer(diceNumber) {
     const getTiles = Array.from(document.querySelectorAll(".tile")).reverse();
     const startPositon = 0;
     
-    
-    if (this.getPlayerTurn() === 0 && this.getPlayer0TurnCounter() === 0) {
-      let position = this.savePlayer0Position(Number(getTiles[startPositon + diceNumber].getAttribute("id")));
-      console.log("Player:", this.getPlayerTurn(), "DiceRoll:", diceNumber, "Player positon in array:", position, "Positon on board:", position);
-      this.paintPlayers(0, position);
-      this.nextPlayerMove();
-      
-    } else if (this.getPlayerTurn() === 0 && this.getPlayer0TurnCounter() > 0) {
-      console.log(this.savePlayer0Position())
-      this.savePlayer0Position() += diceNumber;
-      this.player0TurnCounter() + 1;
-      
-    } else if (this.getPlayerTurn() === 1 && this.getPlayer1TurnCounter() === 0) {
-      let position = this.savePlayer1Position(Number(getTiles[startPositon + diceNumber].getAttribute("id")));
-      
-      console.log("Player:", this.getPlayerTurn(), "DiceRoll:", diceNumber, "Player positon in array:", position, "Positon on board:", position);
-      this.paintPlayers(1, position);
-      this.savePlayer1TurnCounter();
-      this.nextPlayerMove();
-      
-    } else if (this.getPlayerTurn() === 1 && this.getPlayer1TurnCounter() > 0) {
-      this.savePlayer1Position() += diceNumber;
-      this.player1TurnCounter() + 1;
+    if (helpers.getPlayerTurn() === 0) {
+      const player0Counter = helpers.getPlayer0TurnCounter();
+
+      if (player0Counter === 0) {
+
+        let position = helpers.savePlayer0Position(Number(getTiles[startPositon + diceNumber].getAttribute("id")));
+        this.paintPlayers(0, helpers.getPlayer0Position());
+        helpers.savePlayer0TurnCounter();
+        // console.log("Player:", this.getPlayerTurn(), "DiceRoll:", diceNumber, "Player positon in array:", position, "Positon on board:", position);
+      } else {
+        // previousPos is only used in logging
+        let previousPos = helpers.getPlayer0Position()
+        helpers.savePlayer0Position(diceNumber);
+        this.paintPlayers(0, helpers.getPlayer0Position());
+        // console.log("Player:", this.getPlayerTurn(), "DiceRoll:", diceNumber, "PreviousPos:", previousPos);
+        helpers.savePlayer0TurnCounter();
+      }
     }
+    
+    if (helpers.getPlayerTurn() === 1) {
+      const player1Counter = helpers.getPlayer1TurnCounter();
+      
+      if (player1Counter === 0) {
+        let position = helpers.savePlayer1Position(Number(getTiles[startPositon + diceNumber].getAttribute("id")));
+        this.paintPlayers(1, helpers.getPlayer1Position());
+        helpers.savePlayer1TurnCounter();
+        // console.log("Player:", this.getPlayerTurn(), "DiceRoll:", diceNumber, "Player positon in array:", position, "Positon on board:", position);
+      } else {
+        // previousPos is only used in logging
+        let previousPos = helpers.getPlayer1Position()
+        helpers.savePlayer1Position(diceNumber);
+        this.paintPlayers(1, helpers.getPlayer1Position());
+        // console.log("Player:", this.getPlayerTurn(), "DiceRoll:", diceNumber, "PreviousPos:", previousPos);
+        helpers.savePlayer1TurnCounter();
+        }
+      }
+    helpers.nextPlayerMove();
     display.displayDiceResult(diceNumber);
+}
+
+  determineGameEnd() {
+    let player0Position = helpers.getPlayer0Position();
+    let player1Position = helpers.getPlayer1Position();
+
+    if (player0Position || player1Position === 100) {
+
+      // If player won, promt info and ask if they would like to start another game
+      console.log("Somebody won");
+    }
   }
-
-  // determineGameEnd() {
-  //   let player0Position = this.getPlayer0Position();
-  //   let player1Position = this.getPlayer1Position();
-
-  //   if (player0Position || player1Position > 99) {
-  //     this.paintPlayers(0, 0);
-  //     this.paintPlayers(1, 0);
-  //   }
-  // }
 }

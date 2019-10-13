@@ -1,5 +1,7 @@
 const display = new UI();
-const game = new Game("Martin", "Dinnu", 2);
+const game = new Game("Toomas", "Mari", 2);
+const helpers = new Helpers(2);
+
 
 display.initBoard();
 game.addPlayerNames();
@@ -8,5 +10,5 @@ game.addPlayers();
 
 document.getElementById("diceBtn").addEventListener("mouseup", rollDice);
 function rollDice() {
-  game.movePlayer(game.getRandomNumber());
+  game.movePlayer(helpers.getRandomNumber());
 };
