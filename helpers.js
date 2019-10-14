@@ -1,7 +1,6 @@
 class Helpers extends Game {
-  constructor(playerCount) {
-    super(playerCount);
-    this.playerCount = playerCount;
+  constructor() {
+    super();
   }
 
   getPlayerCurrentPosition(playerNum) {

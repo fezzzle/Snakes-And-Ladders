@@ -125,17 +125,25 @@ body {
   z-index: 0;
 }
 
-/* For testing highligher only */
-
-.highlight {
-  transition: all 0.2s;
-  border-bottom: 2px solid white;
-  position: absolute;
-  top: 0;
-  background: white;
-  left: 0;
-  z-index: -1;
-  border-radius: 20px;
-  display: block;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+.player2 {
+  flex: 0 1 100%;
+  align-self: flex-end;
+  margin: 0 0 0 0;
+  height: 100%;
+  border-width:  1px  0.5px 0.5px  1px;
+  border-style: solid;
+  background-color: #FFEAD0;
+  z-index: 0;
 }
+
+.player3 {
+  flex: 0 1 100%;
+  align-self: flex-end;
+  margin: 0 0 0 0;
+  height: 100%;
+  border-width:  1px  0.5px 0.5px  1px;
+  border-style: solid;
+  background-color: #F76F8E;
+  z-index: 0;
+}
+

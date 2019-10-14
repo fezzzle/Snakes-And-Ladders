@@ -1,7 +1,9 @@
 class Game {
-  constructor(player0, player1, playerCount) {
+  constructor(player0, player1, player2, player3, playerCount) {
     this.player0 = player0;
     this.player1 = player1;
+    this.player2 = player2;
+    this.player3 = player3;
     this.playerCount = playerCount;
     this.playerTurn = 0;
     this.player0TurnCounter = 0;
@@ -37,8 +39,8 @@ class Game {
   }
 
   addPlayers() {
-    const playerCount = this.playerCount;
-    for (let i = playerCount - 1; i >= 0; i--) {
+    console.log(this.playerCount, this.player0, this.player1, this.player2, this.player3);
+    for (let i = this.playerCount - 1; i >= 0; i--) {
       const div = document.createElement("div");
       div.classList.add("player" + i);
       document.getElementById("1").append(div);
@@ -54,8 +56,8 @@ class Game {
 }
 
   determineGameEnd() {
-    let player0Position = helpers.getPlayer0Position();
-    let player1Position = helpers.getPlayer1Position();
+    let player0Position = helpers.getPlayerCurrentPosition(0);
+    let player1Position = helpers.getPlayerCurrentPosition(1);
 
     if (player0Position || player1Position === 100) {
 
