@@ -5,18 +5,18 @@ class Helpers extends Game {
   }
 
   getPlayerCurrentPosition(playerNum) {
-    return document.querySelector(".player" + playerNum);
+    return document.querySelector(".player" + playerNum).parentElement.id;
   }
 
-  nextPlayerMove() {
-    this.count = this.getPlayerTurn() + 1;
-    if (this.count === this.playerCount) this.count = 0;
-    return this.count;
-  }
+  // nextPlayerMove() {
+  //   this.count = this.getPlayerTurn() + 1;
+  //   if (this.count === this.playerCount) this.count = 0;
+  //   return this.count;
+  // }
 
-  getPlayerTurn() {
-    return this.count || 0;
-  }
+  // getPlayerTurn() {
+  //   return this.count || 0;
+  // }
 
   getRandomNumber() {
     return Math.floor(Math.random() * 6) + 1;

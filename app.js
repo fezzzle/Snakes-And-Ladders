@@ -10,5 +10,5 @@ game.addPlayers();
 
 document.getElementById("diceBtn").addEventListener("mouseup", rollDice);
 function rollDice() {
-  game.movePlayer(helpers.getRandomNumber());
+  game.movePlayer(helpers.getRandomNumber(), game.playerTurn);
 };
