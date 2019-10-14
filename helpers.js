@@ -5,7 +5,7 @@ class Helpers extends Game {
   }
 
   getPlayerCurrentPosition(playerNum) {
-    return document.querySelector(".player" + playerNum).parentElement.id;
+    return document.querySelector(".player" + playerNum);
   }
 
   // nextPlayerMove() {

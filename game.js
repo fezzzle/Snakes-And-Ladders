@@ -3,7 +3,6 @@ class Game {
     this.player0 = player0;
     this.player1 = player1;
     this.playerCount = playerCount;
-    // D advice about saving some of helper functions data here
     this.playerTurn = 0;
     this.player0TurnCounter = 0;
     this.player1TurnCounter = 0;
@@ -25,9 +24,7 @@ class Game {
     getTiles.unshift(null);
     let getPlayerClassToRemove = helpers.getPlayerCurrentPosition(playerNum);
     console.log("TCL: Game -> paintPlayers -> getPlayerClassToRemove", getPlayerClassToRemove);
-
-    // Commented out on 14.10 11:08 for testing
-    // getPlayerClassToRemove.remove();
+    getPlayerClassToRemove.remove();
 
     let div = document.createElement("div");
     div.classList.add("player" + playerNum);
@@ -49,39 +46,12 @@ class Game {
   }
   
   movePlayer(diceNumber, playerTurn) {
-    const getTiles = Array.from(document.querySelectorAll(".tile")).reverse();
-    const startPositon = 0;
-    console.log(playerTurn);
-    
-    if (this.playerTurn === 0) {
-      // Do not delete it yet
-      // const player0Counter = helpers.getPlayer0TurnCounter();
-      let position = +helpers.getPlayerCurrentPosition(0) + diceNumber;
-
-        this.paintPlayers(0, position);
-        // helpers.savePlayer0Position(diceNumber);
-        helpers.savePlayer0TurnCounter();
-    }
-    
-    if (this.playerTurn === 1) {
-      const player1Counter = helpers.getPlayer1TurnCounter();
-      
-      if (player1Counter === 0) {
-        let position = helpers.savePlayer1Position(Number(getTiles[startPositon + diceNumber].getAttribute("id")));
-        this.paintPlayers(1, helpers.getPlayer1Position());
-        helpers.savePlayer1TurnCounter();
-        // console.log("Player:", this.getPlayerTurn(), "DiceRoll:", diceNumber, "Player positon in array:", position, "Positon on board:", position);
-      } else {
-        // previousPos is only used in logging
-        let previousPos = helpers.getPlayer1Position()
-        helpers.savePlayer1Position(diceNumber);
-        this.paintPlayers(1, helpers.getPlayer1Position());
-        // console.log("Player:", this.getPlayerTurn(), "DiceRoll:", diceNumber, "PreviousPos:", previousPos);
-        helpers.savePlayer1TurnCounter();
-        }
-      }
-    helpers.nextPlayerMove();
+    let position = +helpers.getPlayerCurrentPosition(playerTurn).parentElement.id + diceNumber;
+    this.paintPlayers(playerTurn, position);
+    // helpers.savePlayer0TurnCounter();
     display.displayDiceResult(diceNumber);
+    this.playerTurn += 1;
+    if (playerTurn === this.playerCount -1) this.playerTurn = 0;
 }
 
   determineGameEnd() {
