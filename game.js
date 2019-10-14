@@ -48,7 +48,6 @@ class Game {
   movePlayer(diceNumber, playerTurn) {
     let position = +helpers.getPlayerCurrentPosition(playerTurn).parentElement.id + diceNumber;
     this.paintPlayers(playerTurn, position);
-    // helpers.savePlayer0TurnCounter();
     display.displayDiceResult(diceNumber);
     this.playerTurn += 1;
     if (playerTurn === this.playerCount -1) this.playerTurn = 0;
