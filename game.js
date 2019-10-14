@@ -1,10 +1,7 @@
 class Game {
-  constructor(player0, player1, player2, player3, playerCount) {
-    this.player0 = player0;
-    this.player1 = player1;
-    this.player2 = player2;
-    this.player3 = player3;
-    this.playerCount = playerCount;
+  constructor(players) {
+    this.players = players;
+    this.playerCount = players.length;
     this.playerTurn = 0;
     this.player0TurnCounter = 0;
     this.player1TurnCounter = 0;
@@ -23,9 +20,9 @@ class Game {
 
   paintPlayers(playerNum, position) {
     const getTiles = Array.from(document.querySelectorAll(".tile")).reverse();
+    helpers.highlightCurrentPlayer()
     getTiles.unshift(null);
     let getPlayerClassToRemove = helpers.getPlayerCurrentPosition(playerNum);
-    console.log("TCL: Game -> paintPlayers -> getPlayerClassToRemove", getPlayerClassToRemove);
     getPlayerClassToRemove.remove();
 
     let div = document.createElement("div");
@@ -39,7 +36,7 @@ class Game {
   }
 
   addPlayers() {
-    console.log(this.playerCount, this.player0, this.player1, this.player2, this.player3);
+    console.log(this.players)
     for (let i = this.playerCount - 1; i >= 0; i--) {
       const div = document.createElement("div");
       div.classList.add("player" + i);

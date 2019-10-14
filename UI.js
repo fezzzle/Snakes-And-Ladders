@@ -38,19 +38,10 @@ class UI {
         this.counter -= 1;
         makeColDiv.classList.add("tile");
         makeColDiv.setAttribute("id", this.counter)
-        // At first textContent was on makeColDiv, now moved on makeTextDiv
-        // makeColDiv.textContent = this.counter;
         gameRow.append(makeColDiv);
-
-
         makeTextDiv.textContent = this.counter;
         makeTextDiv.classList.add("text");
         makeTextDiv.setAttribute("id", "text" + this.counter);
-        // makeTextDiv.classList.add("player1");
-
-        // makeTextDiv.dataset.player = this.counter;
-
-
         makeColDiv.appendChild(makeTextDiv);
       }
     }

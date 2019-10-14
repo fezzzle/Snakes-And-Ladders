@@ -14,11 +14,11 @@
 // playerNames.push(player0, player1, player2, player3);
 // console.log(playerNames);
 
-
+const players = ["Mari", "Kaspar", "Stiiven", "Tõnu"]
 
 const display = new UI();
 // const game = new Game(...playerNames, playerCount);
-const game = new Game("John", "Smith", "Jane", "Mary", 4);
+const game = new Game(players);
 const helpers = new Helpers();
 
 

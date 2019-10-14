@@ -10,4 +10,7 @@ class Helpers extends Game {
   getRandomNumber() {
     return Math.floor(Math.random() * 6) + 1;
   }
+  highlightCurrentPlayer() {
+    console.log(game.playerTurn);
+  }
 }
