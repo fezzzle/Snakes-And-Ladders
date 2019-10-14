@@ -17,7 +17,26 @@ class Helpers {
     }
     this.savePlayer = player;
   }
-  showPlayerNameOnTile() {
-    
+
+  addPlayerNames() {
+    let names = game.players;
+    const name = document.getElementById("name");
+    for (let i = 0; i < names.length; i++) {
+      const p = document.createElement("p");
+      p.textContent = `Player${i + 1}: ${names[i]}`;
+      name.append(p);
+    }
+  }
+
+  showPlayerNameOnTile(player) {
+    let playerPos = this.getPlayerCurrentPosition(player);
+    let parentId = playerPos.parentElement.id;
+    let getText = document.getElementById("text" + parentId);
+    getText.textContent = game.players[player];
+    getText.classList.add(game.players[player].toLowerCase());
+    let arrayOfIndeces = Array.from(document.getElementsByClassName(game.players[player].toLowerCase()));
+    if (arrayOfIndeces.length > 1) {
+      arrayOfIndeces[1].textContent = parentId;
+    }
   }
 }

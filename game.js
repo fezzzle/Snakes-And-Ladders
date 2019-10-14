@@ -6,17 +6,6 @@ class Game {
     this.player0TurnCounter = 0;
     this.player1TurnCounter = 0;
   }
-
-  
-  addPlayerNames() {
-    let names = this.players;
-    const name = document.getElementById("name");
-    for (let i = 0; i < names.length; i++) {
-      const p = document.createElement("p");
-      p.textContent = `Player${i + 1}: ${names[i]}`;
-      name.append(p);
-    }
-  }  
   
   paintPlayers(player, position) {
     const getTiles = Array.from(document.querySelectorAll(".tile")).reverse();
@@ -27,9 +16,11 @@ class Game {
     div.classList.add("player" + player);
     if (position <= 99) {
       getTiles[position].append(div);
+      helpers.showPlayerNameOnTile(player);
       helpers.highlightCurrentPlayer(player);
     } else {
       getTiles[100].append(div);
+      helpers.showPlayerNameOnTile(player);
       helpers.highlightCurrentPlayer(player);
       this.determineGameEnd();
     }
@@ -43,9 +34,7 @@ class Game {
     }
   }
   
-  movePlayer(diceNumber, playerTurn) {
-  console.log("TCL: Game -> movePlayer -> diceNumber", diceNumber)
-    
+  movePlayer(diceNumber, playerTurn) {    
     let position = +helpers.getPlayerCurrentPosition(playerTurn).parentElement.id + diceNumber;
     this.paintPlayers(playerTurn, position);
     display.displayDiceResult(diceNumber);
