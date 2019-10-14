@@ -15,7 +15,7 @@ class Game {
       name.append(p);
     }
   }  
-  
+
   paintPlayers(playerNum, position) {
     const getTiles = Array.from(document.querySelectorAll(".tile")).reverse();
     getTiles.unshift(null);
