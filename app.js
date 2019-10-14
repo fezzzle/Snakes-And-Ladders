@@ -14,7 +14,7 @@
 // playerNames.push(player0, player1, player2, player3);
 // console.log(playerNames);
 
-const players = ["Mari", "Kaspar", "Stiiven", "Tõnu"]
+const players = ["Martin", "Diana", "Kersti", "Henri"];
 
 const display = new UI();
 // const game = new Game(...playerNames, playerCount);
@@ -24,8 +24,8 @@ const helpers = new Helpers();
 
 
 display.initBoard();
-game.addPlayerNames();
 game.addPlayers();
+game.addPlayerNames();
 
 
 document.getElementById("diceBtn").addEventListener("mouseup", rollDice);

@@ -1,16 +1,23 @@
-class Helpers extends Game {
+class Helpers {
   constructor() {
-    super();
+    this.savePlayer = 0;
   }
 
-  getPlayerCurrentPosition(playerNum) {
-    return document.querySelector(".player" + playerNum);
+  getPlayerCurrentPosition(player) {
+    return document.querySelector(".player" + player);
   }
 
   getRandomNumber() {
     return Math.floor(Math.random() * 6) + 1;
   }
-  highlightCurrentPlayer() {
-    console.log(game.playerTurn);
+  highlightCurrentPlayer(player) {
+    this.getPlayerCurrentPosition(player).classList.add("highlight");
+    if (player !== this.savePlayer) {
+      this.getPlayerCurrentPosition(this.savePlayer).classList.remove("highlight");
+    }
+    this.savePlayer = player;
+  }
+  showPlayerNameOnTile() {
+    
   }
 }

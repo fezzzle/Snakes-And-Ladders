@@ -7,9 +7,9 @@ class Game {
     this.player1TurnCounter = 0;
   }
 
-
+  
   addPlayerNames() {
-    let names = [this.player0, this.player1];
+    let names = this.players;
     const name = document.getElementById("name");
     for (let i = 0; i < names.length; i++) {
       const p = document.createElement("p");
@@ -17,26 +17,25 @@ class Game {
       name.append(p);
     }
   }  
-
-  paintPlayers(playerNum, position) {
+  
+  paintPlayers(player, position) {
     const getTiles = Array.from(document.querySelectorAll(".tile")).reverse();
-    helpers.highlightCurrentPlayer()
     getTiles.unshift(null);
-    let getPlayerClassToRemove = helpers.getPlayerCurrentPosition(playerNum);
-    getPlayerClassToRemove.remove();
-
+    helpers.getPlayerCurrentPosition(player).remove();
+    
     let div = document.createElement("div");
-    div.classList.add("player" + playerNum);
+    div.classList.add("player" + player);
     if (position <= 99) {
       getTiles[position].append(div);
+      helpers.highlightCurrentPlayer(player);
     } else {
       getTiles[100].append(div);
+      helpers.highlightCurrentPlayer(player);
       this.determineGameEnd();
     }
   }
-
+  
   addPlayers() {
-    console.log(this.players)
     for (let i = this.playerCount - 1; i >= 0; i--) {
       const div = document.createElement("div");
       div.classList.add("player" + i);
@@ -45,6 +44,8 @@ class Game {
   }
   
   movePlayer(diceNumber, playerTurn) {
+  console.log("TCL: Game -> movePlayer -> diceNumber", diceNumber)
+    
     let position = +helpers.getPlayerCurrentPosition(playerTurn).parentElement.id + diceNumber;
     this.paintPlayers(playerTurn, position);
     display.displayDiceResult(diceNumber);
