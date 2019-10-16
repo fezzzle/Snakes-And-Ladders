@@ -14,12 +14,12 @@ class Game {
     
     let div = document.createElement("div");
     div.classList.add("player" + player);
-    if (position <= 99) {
+    if (position <= 49) {
       getTiles[position].append(div);
       helpers.showPlayerNameOnTile(player);
       helpers.highlightCurrentPlayer(player);
     } else {
-      getTiles[100].append(div);
+      getTiles[50].append(div);
       helpers.showPlayerNameOnTile(player);
       helpers.highlightCurrentPlayer(player);
       this.determineGameEnd();
@@ -34,10 +34,15 @@ class Game {
     }
   }
   
-  movePlayer(diceNumber, playerTurn) {    
+  movePlayer(diceNumber, playerTurn) {
+    let saveDiceRoll;
     let position = +helpers.getPlayerCurrentPosition(playerTurn).parentElement.id + diceNumber;
     this.paintPlayers(playerTurn, position);
-    display.displayDiceResult(diceNumber);
+    display.displayDiceResult(diceNumber || saveDiceRoll);
+    
+    if (diceNumber === 6) {
+      return;
+    } 
     this.playerTurn += 1;
     if (playerTurn === this.playerCount -1) this.playerTurn = 0;
 }
@@ -46,7 +51,7 @@ class Game {
     let player0Position = helpers.getPlayerCurrentPosition(0);
     let player1Position = helpers.getPlayerCurrentPosition(1);
 
-    if (player0Position || player1Position === 100) {
+    if (player0Position || player1Position === 50) {
 
       // If player won, promt info and ask if they would like to start another game
       console.log("Somebody won");

@@ -53,6 +53,17 @@ class UI {
     this.addRollDiceButton();
     this.displayDiceResult("Start");
   }
+  addLadder(pos1, pos2) {
+    const createDiv = document.createElement("div");
+    const elementToAttchtoOne = document.getElementById(pos1);
+    const elementToAttchtoTwo = document.getElementById(pos2);
+    let elementToAttchToOneObj = elementToAttchtoOne.getBoundingClientRect();
+    console.log("TCL: UI -> addLadder -> First element", elementToAttchToOneObj)
+    console.log("TCL: UI -> addLadder -> First element Y COORDS", elementToAttchToOneObj.y)
+    let elementToAttchToTwoObj = elementToAttchtoTwo.getBoundingClientRect();
+    console.log("TCL: UI -> addLadder -> Second element", elementToAttchToTwoObj)
+    console.log("TCL: UI -> addLadder -> Second element Y COORDS", elementToAttchToTwoObj.y)
+  }
 }
 
 

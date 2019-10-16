@@ -60,27 +60,27 @@ body {
 
 .tile {
   display: flex;
+  align-content: center;
   justify-content: center;
   flex-direction: row;
   flex: 1;
   background-color: #BFD7EA;
-  
-  
+  border-radius: 6px;
 
   border-style: solid;
   /* border-width:  0  0.5px 0.5px  0; */
 
   line-height: 2em;
   color: white;
-  text-align: left;
 }
 
 .aside {
-  flex: 0 0 200px;
   overflow: auto;
   background: #3066BE;
-  /* border-width: 0.5px 0 0.5px 0; */
-  /* border-style: solid; */
+  border-width: 3px;
+  border-style: solid;
+  border-color: white;
+  border-radius: 7px;
 }
 
 #diceBtn {
@@ -96,6 +96,7 @@ body {
 .header, .footer, .aside {
   padding: 1em;
 }
+
 .header, .footer {
   height: 5vh;
   background-color: #2B4162;
@@ -104,6 +105,7 @@ body {
 
 .text {
   display: flex;
+  align-self: center;
   position: absolute;
   font-size: 1em;
   color: rgba(255,255,255,1);
@@ -117,7 +119,7 @@ body {
   height: 100%;
   border-width:  1px  0.5px 0.5px  1px;
   border-style: solid;
-  background-color: #011936;
+  background-color: #3C91E6;
   z-index: 0;
 }
 
@@ -128,7 +130,7 @@ body {
   height: 100%;
   border-width:  1px  0.5px 0.5px  1px;
   border-style: solid;
-  background-color: #090C9B;
+  background-color: #68B0AB;
   z-index: 0;
 }
 
@@ -139,7 +141,7 @@ body {
   height: 100%;
   border-width:  1px  0.5px 0.5px  1px;
   border-style: solid;
-  background-color: #386C0B;
+  background-color: #FF5A5F;
   z-index: 0;
 }
 
@@ -150,11 +152,22 @@ body {
   height: 100%;
   border-width:  1px  0.5px 0.5px  1px;
   border-style: solid;
-  background-color: #F76F8E;
+  background-color: #E3C567;
   z-index: 0;
 }
 
 .highlight {
-  border-width: 10px;
-  border-color: #FFF666;
+  border-width: 5px;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #CFEBDF;
 }
+
+.ladder {
+  content:"ASDF";
+  position: absolute;
+  border-top: 50px solid red;
+    width: 200px;
+    transform: rotate(45deg);
+    transform-origin: 0% 0%;
+  }

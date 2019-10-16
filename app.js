@@ -14,8 +14,8 @@
 // playerNames.push(player0, player1, player2, player3);
 // console.log(playerNames);
 
-// const players = ["Martin"];
-const players = ["Martin", "Diana", "Kersti", "Henri"];
+const players = ["Martin", "Dinnu"];
+// const players = ["Martin", "Diana", "Kersti", "Henri"];
 
 const display = new UI();
 // const game = new Game(...playerNames, playerCount);
