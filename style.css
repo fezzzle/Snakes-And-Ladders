@@ -166,8 +166,15 @@ body {
 .ladder {
   content:"ASDF";
   position: absolute;
-  border-top: 50px solid red;
-    width: 200px;
+  color: red;
+  background: #FF5A5F;
+  /* border-top: 50px solid red; */
+    /* width: 200px;
     transform: rotate(45deg);
-    transform-origin: 0% 0%;
-  }
+    transform-origin: 0% 0%; */
+}
+
+.svgladder {
+  height:210;
+  width: 500;
+}
