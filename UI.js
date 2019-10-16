@@ -4,8 +4,8 @@
 
 class UI {
   constructor() {
-    this.counter = 101;
-    this.gameTable = document.getElementById("gameTable");
+    this.counter = 51;
+    this.gameTable = document.querySelector(".content");
   }
 
   addRollDiceButton() {
@@ -26,7 +26,7 @@ class UI {
     let makeColDiv;
     let makeTextDiv;
     
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 5; i++) {
       makeRowDiv = document.createElement("div");
       makeRowDiv.classList.add("row", "row" + i);
       this.gameTable.append(makeRowDiv);
